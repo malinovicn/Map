@@ -9,10 +9,7 @@ import Combine
 import Foundation
 
 /// Utility top level function to apply modifiers and return a modified instance
-public func modifying<T>(
-    _ value: T,
-    with closure: (inout T) throws -> Void
-) rethrows -> T {
+public func modifying<T>(_ value: T, with closure: (inout T) throws -> Void) rethrows -> T {
     var value = value
     try closure(&value)
     return value

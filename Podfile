@@ -6,7 +6,9 @@ target 'Map' do
 
   # Pods for Map
   pod 'Mapbox-iOS-SDK', '~> 5.3.0'
-
+  pod 'Resolver'
+  pod 'BottomSheet', :git => 'https://github.com/weitieda/bottom-sheet.git'
+  
   target 'MapTests' do
     inherit! :search_paths
     # Pods for testing
