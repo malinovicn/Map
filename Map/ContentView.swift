@@ -27,15 +27,18 @@ struct ContentView: View {
             MapView(annotations: $annotations)
                 .centerCoordinate(.init(latitude: 37.791293, longitude: -122.396324))
                 .zoomLevel(16)
+                .edgesIgnoringSafeArea(.top)
+                .edgesIgnoringSafeArea(.bottom)
                 .onTapGesture {
                     isPresented = true
                 }
         }
         .bottomSheet(isPresented: $isPresented, height: UIScreen.main.bounds.height / 1.5) {
-            List(20..<40) {
-                Text("\($0)")
-            }
-            .listStyle(PlainListStyle())
+//            List(20..<40) {
+//                Text("\($0)")
+//            }
+//            .listStyle(PlainListStyle())
+            MarkerContentView()
         }
         .navigationTitle("Bottom sheet")
         .navigationBarItems(trailing: Button(action: { isPresented = false }) {

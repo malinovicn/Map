@@ -20,7 +20,7 @@ open class PublisherViewModel<Input, Output>: ObservableObject {
         public init(delay: DispatchQueue.SchedulerTimeType.Stride = 0,
                     debounce: DispatchQueue.SchedulerTimeType.Stride = 0,
                     timeout: DispatchQueue.SchedulerTimeType.Stride = 10,
-                    retries: Int = 3,
+                    retries: Int = 1,
                     scheduler: DispatchQueue = DispatchQueue.main) {
             self.delay = delay
             self.debounce = debounce
@@ -32,7 +32,7 @@ open class PublisherViewModel<Input, Output>: ObservableObject {
         var delay: DispatchQueue.SchedulerTimeType.Stride = 0
         var debounce: DispatchQueue.SchedulerTimeType.Stride = 0
         var timeout: DispatchQueue.SchedulerTimeType.Stride = 10
-        var retries = 3
+        var retries = 1
         var scheduler = DispatchQueue.main
     }
 
