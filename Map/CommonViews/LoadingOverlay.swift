@@ -10,7 +10,7 @@ import SwiftUI
 /// A view that can be overlaid on views to show loading activity
 public struct LoadingOverlay: View {
     @Binding var isLoading: Bool
-    var text = "Loading"
+    var text = "Loading Map"
 
     public init(isLoading: Binding<Bool>) {
         _isLoading = isLoading

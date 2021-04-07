@@ -10,45 +10,97 @@ import Mapbox
 import BottomSheet
 import Resolver
 
-struct ContentView: View {
+public struct ContentView: View {
     @Injected(name: "MapApiService") static var api: MapApiBaseProtocol
-//    @ObservedObject var apiService = PublisherViewModel<MapElement, Error> { _ in
-//
-//    }
+    @ObservedObject var apiService = PublisherViewModel {
+        api.getSimplePois()
+    }
 
-    @State var isPresented = false
+    class Annotation: NSObject, MGLAnnotation {
+        var coordinate: CLLocationCoordinate2D
+        var title: String?
+        var subtitle: String?
 
-    @State var annotations: [MGLPointAnnotation] = [
-        MGLPointAnnotation(title: "Mapbox", coordinate: .init(latitude: 37.791434, longitude: -122.396267))
-    ]
+        init(coordinate: CLLocationCoordinate2D, title: String?, subtitle: String?) {
+            self.coordinate = coordinate
+            self.title = title
+            self.subtitle = subtitle
+        }
+    }
 
-    var body: some View {
+
+    @ObservedObject var viewModel = MarkerContentViewModel(
+        annotation: Annotation(
+            coordinate: CLLocationCoordinate2D(
+                latitude: CLLocationDegrees(0.0), longitude: CLLocationDegrees(0.0)), title: "", subtitle: ""
+        ),
+        isPresented: false
+    )
+
+    @State var annotations: [MGLPointAnnotation] = []
+
+    public var body: some View {
         ZStack {
-            MapView(annotations: $annotations)
-                .centerCoordinate(.init(latitude: 37.791293, longitude: -122.396324))
-                .zoomLevel(16)
-                .edgesIgnoringSafeArea(.top)
-                .edgesIgnoringSafeArea(.bottom)
-                .onTapGesture {
-                    isPresented = true
-                }
+            if apiService.output != nil, let centerCoordinate = annotations[2].coordinate {
+                MapView(annotations: $annotations)
+                    .centerCoordinate(.init(latitude:  centerCoordinate.latitude,
+                                            longitude: centerCoordinate.longitude))
+                    .zoomLevel(10)
+                    .edgesIgnoringSafeArea(.top)
+                    .edgesIgnoringSafeArea(.bottom)
+
+            }
         }
-        .bottomSheet(isPresented: $isPresented, height: UIScreen.main.bounds.height / 1.5) {
-//            List(20..<40) {
-//                Text("\($0)")
-//            }
-//            .listStyle(PlainListStyle())
-            MarkerContentView()
+        .bottomSheet(isPresented: $viewModel.isPresented, height: UIScreen.main.bounds.height / 1.5) {
+            if let title = viewModel.annotation.title, let subtitle = viewModel.annotation.subtitle {
+                MarkerWebContentView(title: title!,
+                                     description: viewModel.annotation.description,
+                                     type: subtitle!)
+            }
         }
-        .navigationTitle("Bottom sheet")
-        .navigationBarItems(trailing: Button(action: { isPresented = false }) {
-            Text("Show")
-        })
+        .onAppear {
+            apiService.start()
+        }
+        .onTapGesture {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                viewModel.isPresented = true
+            }
+        }
+        .onReceive(apiService.$output) { output in
+            guard output != nil else { return }
+            viewModel.markers = output!
+            annotations = [
+                MGLPointAnnotation(
+                    title: viewModel.markers?[1].title ?? "",
+                    coordinate: .init(latitude: Double(viewModel.markers?[1].position[1] ?? 0.0),
+                                      longitude: Double(viewModel.markers?[1].position[0] ?? 0.0))
+                ),
+                MGLPointAnnotation(
+                    title: viewModel.markers?[2].title ?? "",
+                    coordinate: .init(latitude: Double(viewModel.markers?[3].position[1] ?? 0.0),
+                                      longitude: Double(viewModel.markers?[3].position[0] ?? 0.0))
+                ),
+                MGLPointAnnotation(
+                    title: viewModel.markers?[2].title ?? "",
+                    coordinate: .init(latitude: Double(viewModel.markers?[5].position[1] ?? 0.0),
+                                      longitude: Double(viewModel.markers?[5].position[0] ?? 0.0))
+                ),
+                MGLPointAnnotation(
+                    title: viewModel.markers?[2].title ?? "",
+                    coordinate: .init(latitude: Double(viewModel.markers?[7].position[1] ?? 0.0),
+                                      longitude: Double(viewModel.markers?[7].position[0] ?? 0.0))
+                )
+            ]
+        }
+        .overlay(LoadingOverlay(isLoading: $apiService.isLoading))
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-    }
-}
+#if DEBUG
+//struct ContentView_Previews: PreviewProvider {
+//    static var mapViewModel = MapViewModel(annotation: <#T##MGLAnnotation#>)
+//    static var previews: some View {
+//        ContentView(mapViewModel: mapViewModel)
+//    }
+//}
+#endif

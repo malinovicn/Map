@@ -7,35 +7,35 @@
 
 import Foundation
 
-// MARK: - MapElement
+// MARK: - MapElementElement
 struct MapElement: Codable {
     let id: Int
     let icon: Icon
     let title: String
-    let titleEn: TitleEn?
-    let subtitle, subtitleEn: String?
-    let mapDescription: String
-    let descriptionEn: String?
+//    let title_en: TitleEn?
+    let subtitle, subtitle_en: String?
+    let description: String
+//    let description_en: String?
     let position: [Double]
-    let createdAt, updatedAt: String
-    let type: TypeEnum
-    let useableText: UseableText?
-    let states: [MapState]?
+//    let created_at, updated_at: String
+    let type: TypePoi
+//    let useable_text: UseableText?
+    let states: [PoiState]?
 
-    enum CodingKeys: String, CodingKey {
-        case id, icon, title
-        case titleEn = "title_en"
-        case subtitle
-        case subtitleEn = "subtitle_en"
-        case mapDescription = "description"
-        case descriptionEn = "description_en"
-        case position
-        case createdAt = "created_at"
-        case updatedAt = "updated_at"
-        case type
-        case useableText = "useable_text"
-        case states
-    }
+//    enum CodingKeys: String, CodingKey {
+//        case id, icon, title
+//        case titleEn = "title_en"
+//        case subtitle
+//        case subtitleEn = "subtitle_en"
+//        case mapElementDescription = "description"
+//        case descriptionEn = "description_en"
+//        case position
+//        case createdAt = "created_at"
+//        case updatedAt = "updated_at"
+//        case type
+//        case useableText = "useable_text"
+//        case states
+//    }
 }
 
 enum Icon: String, Codable {
@@ -53,7 +53,7 @@ enum Icon: String, Codable {
     case ticketautomat = "ticketautomat"
 }
 
-enum MapState: String, Codable {
+enum PoiState: String, Codable {
     case available = "available"
     case occupied = "occupied"
 }
@@ -63,7 +63,7 @@ enum TitleEn: String, Codable {
     case ticketMachine = "ticket machine"
 }
 
-enum TypeEnum: String, Codable {
+enum TypePoi: String, Codable {
     case flinksterPoi = "FlinksterPoi"
     case jezVehiclePoi = "JezVehiclePoi"
     case simplePoi = "SimplePoi"
@@ -81,4 +81,4 @@ enum UseableText: String, Codable {
     case verfügbar2 = "Verfügbar: 2"
 }
 
-typealias Map = [MapElement]
+typealias MapElements = [MapElement]

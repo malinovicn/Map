@@ -9,17 +9,11 @@ import Foundation
 
 /// Configuration for the tenant connection to the Server.
 public protocol ServerConfig {
-    /// Returns a URL from the stage host.
+    /// Returns a URL from the host.
     var baseURL: URL { get }
 
-    /// Returns a combination of the stage host and api path.
-    var apiBase: URL { get }
-
-    /// Returns the host bank url.
-    var stageHost: URL { get }
-
     /// Returns the api base path.
-    var apiPath: String { get }
+    var host: URL { get }
 }
 
 /// Contains default values for the ServerConfig.
@@ -28,18 +22,10 @@ public struct DefaultServerConfig: ServerConfig {
     public init() {}
 
     public var baseURL: URL {
-        stageHost
+        host
     }
 
-    public var apiBase: URL {
-        stageHost.appendingPathComponent(apiPath)
-    }
-
-    public var stageHost: URL {
-        "https://xxx"
-    }
-
-    public var apiPath: String {
-        "api/v1"
+    public var host: URL {
+        "https://midgard.netzmap.com/"
     }
 }

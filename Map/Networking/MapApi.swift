@@ -9,9 +9,11 @@ import Combine
 import Security
 import Resolver
 
-public protocol MapApiBaseProtocol {
+protocol MapApiBaseProtocol {
     /// Server configuration for a specific tenant.
     var serverConfig: ServerConfig { get }
+
+    func getSimplePois() -> AnyPublisher<MapElements, Error>
 }
 
 public struct MapApi: MapApiBaseProtocol {
@@ -22,5 +24,13 @@ public struct MapApi: MapApiBaseProtocol {
         let configuration = URLSessionConfiguration.default
         configuration.httpAdditionalHeaders = ["Accept-Language": Locale.regionLanguage]
         session = URLSession(configuration: configuration, delegate: nil, delegateQueue: .main)
+    }
+
+    func getSimplePois() -> AnyPublisher<MapElements, Error> {
+        serverConfig
+            .baseURL
+            .request(.get, path: "features.json")
+            .adding(parameters: ["app_mode" : "swh-mein-halle-mobil"])
+            .publisher(session: session)
     }
 }
