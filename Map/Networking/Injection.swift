@@ -9,7 +9,7 @@ import Resolver
 
 extension Resolver: ResolverRegistering {
     /// Resolver will automatically call registerAllServices, and that function will do calls to each
-    /// of your OWN registration functions.
+    /// of registration functions.
     public static func registerAllServices() {
         register { DefaultServerConfig() as ServerConfig }.scope(.cached)
         register(name: "MapApiService") { MapApi() as MapApiBaseProtocol }.scope(.application)

@@ -60,7 +60,7 @@ public extension URL.Parameters {
         map { URLQueryItem(name: $0.key, value: $0.value) }.sorted { $1.name > $0.name }
     }
 
-    /// Returns a query string representing these parameters, such as `a=1&b=2&c=Vikram%20Kriplaney`
+    /// Returns a query string representing these parameters, such as `a=1&b=2&c=Nikola%20Malinovic`
     var queryString: String? {
         var components = URLComponents(string: "http://dummy")
         components?.queryItems = queryItems

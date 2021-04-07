@@ -22,7 +22,6 @@ public struct MapApi: MapApiBaseProtocol {
 
     public init() {
         let configuration = URLSessionConfiguration.default
-        configuration.httpAdditionalHeaders = ["Accept-Language": Locale.regionLanguage]
         session = URLSession(configuration: configuration, delegate: nil, delegateQueue: .main)
     }
 

@@ -51,9 +51,9 @@ struct WebView: UIViewRepresentable {
 }
 
 #if DEBUG
-struct MarkerContent_Previews: PreviewProvider {
-    static var previews: some View {
-        MarkerWebContentView(title: "", description: "", type: "")
-    }
-}
+//struct MarkerContent_Previews: PreviewProvider {
+//    static var previews: some View {
+//        MarkerWebContentView(title: "", description: "", type: "")
+//    }
+//}
 #endif

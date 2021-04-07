@@ -59,9 +59,14 @@ struct MapView: UIViewRepresentable {
         }
         mapView.addAnnotations(annotations)
     }
-
+    
     private func setMarkerContentViewModel(annotation: MGLAnnotation, isPresented: Bool) {
-        _ = MarkerContentViewModel(annotation: annotation, isPresented: true)
+        let annotationProxy = Binding<MGLAnnotation>(
+            get: { annotation },
+            set: { _ in }
+        )
+
+        _ = ContentView(annotation: annotation)
     }
 
     // MARK: - Implementing MGLMapViewDelegate
@@ -87,15 +92,5 @@ struct MapView: UIViewRepresentable {
         func mapView(_ mapView: MGLMapView, annotationCanShowCallout annotation: MGLAnnotation) -> Bool {
             return true
         }
-    }
-}
-
-class MapViewModel: ObservableObject {
-    @Published var annotation: MGLAnnotation?
-    @Published var isPresented: Bool?
-
-    init(annotation: MGLAnnotation?, isPresented: Bool?) {
-        self.annotation = annotation
-        self.isPresented = isPresented
     }
 }

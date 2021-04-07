@@ -23,8 +23,6 @@
 		B8D0828926136A54002F68A8 /* Spinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8D0828826136A54002F68A8 /* Spinner.swift */; };
 		B8D0829526136DAC002F68A8 /* MapApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8D0829426136DAC002F68A8 /* MapApi.swift */; };
 		B8D082A326136E78002F68A8 /* ServerConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8D082A226136E78002F68A8 /* ServerConfig.swift */; };
-		B8D082A826136F87002F68A8 /* Locale+RegionLanguage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8D082A726136F87002F68A8 /* Locale+RegionLanguage.swift */; };
-		B8D56CBB261B5D420024E8B0 /* MarkerContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8D56CBA261B5D420024E8B0 /* MarkerContentViewModel.swift */; };
 		B8EC347A261B537D0046D370 /* Injection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8EC3479261B537D0046D370 /* Injection.swift */; };
 		B8F5EA51260CE75B00475E09 /* URLRequest+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F5EA50260CE75B00475E09 /* URLRequest+Additions.swift */; };
 		B8F5EA56260CE7AB00475E09 /* URL+Parameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F5EA55260CE7AB00475E09 /* URL+Parameters.swift */; };
@@ -79,8 +77,6 @@
 		B8D0828826136A54002F68A8 /* Spinner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spinner.swift; sourceTree = "<group>"; };
 		B8D0829426136DAC002F68A8 /* MapApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapApi.swift; sourceTree = "<group>"; };
 		B8D082A226136E78002F68A8 /* ServerConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerConfig.swift; sourceTree = "<group>"; };
-		B8D082A726136F87002F68A8 /* Locale+RegionLanguage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Locale+RegionLanguage.swift"; sourceTree = "<group>"; };
-		B8D56CBA261B5D420024E8B0 /* MarkerContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkerContentViewModel.swift; sourceTree = "<group>"; };
 		B8EC3479261B537D0046D370 /* Injection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Injection.swift; sourceTree = "<group>"; };
 		B8F5EA50260CE75B00475E09 /* URLRequest+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLRequest+Additions.swift"; sourceTree = "<group>"; };
 		B8F5EA55260CE7AB00475E09 /* URL+Parameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Parameters.swift"; sourceTree = "<group>"; };
@@ -147,7 +143,6 @@
 				B856474426021C6200F65AE7 /* MapApp.swift */,
 				B856474626021C6200F65AE7 /* ContentView.swift */,
 				683139FD261ADECC007E524F /* MarkerWebContentView.swift */,
-				B8D56CBA261B5D420024E8B0 /* MarkerContentViewModel.swift */,
 				B856477226021D8E00F65AE7 /* MapView.swift */,
 				B8CC8C902610A435004A34F9 /* Model */,
 				B8F5EA5F260CE89500475E09 /* Networking */,
@@ -218,7 +213,6 @@
 			children = (
 				B8F5EA5A260CE86300475E09 /* HttpStatusCode.swift */,
 				B8EC3479261B537D0046D370 /* Injection.swift */,
-				B8D082A726136F87002F68A8 /* Locale+RegionLanguage.swift */,
 				B8D0829426136DAC002F68A8 /* MapApi.swift */,
 				B8D082A226136E78002F68A8 /* ServerConfig.swift */,
 				B8F5EA55260CE7AB00475E09 /* URL+Parameters.swift */,
@@ -487,13 +481,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8D082A826136F87002F68A8 /* Locale+RegionLanguage.swift in Sources */,
 				B8D082A326136E78002F68A8 /* ServerConfig.swift in Sources */,
 				B8F5EA56260CE7AB00475E09 /* URL+Parameters.swift in Sources */,
 				B80AF6B126062AB5003354EF /* MapModel.swift in Sources */,
 				B856474726021C6200F65AE7 /* ContentView.swift in Sources */,
 				B8D0827F261369F8002F68A8 /* LoadingOverlay.swift in Sources */,
-				B8D56CBB261B5D420024E8B0 /* MarkerContentViewModel.swift in Sources */,
 				B856477326021D8E00F65AE7 /* MapView.swift in Sources */,
 				B8D0828426136A3A002F68A8 /* BlurEffect.swift in Sources */,
 				B8D0829526136DAC002F68A8 /* MapApi.swift in Sources */,
