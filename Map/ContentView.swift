@@ -36,6 +36,7 @@ public struct ContentView: View {
 
             }
         }
+        .alert(error: $apiService.error)
         .bottomSheet(isPresented: $isPresented, height: UIScreen.main.bounds.height / 1.5) {
             if let title = annotation?.title, let subtitle = annotation?.subtitle {
                 MarkerWebContentView(title: title!,
@@ -46,7 +47,7 @@ public struct ContentView: View {
         .onAppear {
             apiService.start()
         }
-        .onTapGesture { // Just to show bottom sheet
+        .onTapGesture { // TODO: Just to show bottom sheet on tap, should be removed when issue is figured out.
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                 isPresented = true
             }

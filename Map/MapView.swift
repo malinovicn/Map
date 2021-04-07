@@ -65,7 +65,6 @@ struct MapView: UIViewRepresentable {
             get: { annotation },
             set: { _ in }
         )
-
         _ = ContentView(annotation: annotation)
     }
 
